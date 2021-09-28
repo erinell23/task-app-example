@@ -1,12 +1,16 @@
 export const getTasks = () => {
     return new Promise((resolve, reject) => {
-        fetch(`${process.env.REACT_APP_API_URL}/operaciones/validacionFacial`, {
+        fetch('http://localhost:8080/task/', {
             headers: {
                 'Content-Type': 'application/json'
             },
-            method: 'POST',
-        }).then(res => res.json()
-        ).then(data => {
+            method: 'GET',
+        }).then(res => {
+            if (!res.ok) {
+                reject("Error");
+            }
+            return res.json()
+        }).then(data => {
             resolve(data);
         }).catch(() => {
             reject("Error");
@@ -14,16 +18,20 @@ export const getTasks = () => {
     });
 }
 
-export const saveTask = () => {
+export const saveTask = (task) => {
     return new Promise((resolve, reject) => {
-        fetch(`${process.env.REACT_APP_API_URL}/operaciones/validacionFacial`, {
+        fetch('http://localhost:8080/task/', {
             headers: {
                 'Content-Type': 'application/json'
             },
             method: 'POST',
-        }).then(res => 
-             res.json()
-        ).then(data => {
+            body: JSON.stringify(task)
+        }).then(res => {
+            if (!res.ok) {
+                reject("Error");
+            }
+            return res.json()
+        }).then(data => {
             resolve(data);
         }).catch(() => {
             reject("Error");
@@ -31,16 +39,20 @@ export const saveTask = () => {
     });
 }
 
-export const updateTask = () => {
+export const updateTask = (task) => {
     return new Promise((resolve, reject) => {
-        fetch(`${process.env.REACT_APP_API_URL}/operaciones/validacionFacial`, {
+        fetch('http://localhost:8080/task/update', {
             headers: {
                 'Content-Type': 'application/json'
             },
             method: 'POST',
-        }).then(res => 
-             res.json()
-        ).then(data => {
+            body: JSON.stringify(task)
+        }).then(res => {
+            if (!res.ok) {
+                reject("Error");
+            }
+            return res.json()
+        }).then(data => {
             resolve(data);
         }).catch(() => {
             reject("Error");
@@ -48,16 +60,19 @@ export const updateTask = () => {
     });
 }
 
-export const deleteTask = () => {
+export const deleteTask = (id) => {
     return new Promise((resolve, reject) => {
-        fetch(`${process.env.REACT_APP_API_URL}/operaciones/validacionFacial`, {
+        fetch(`http://localhost:8080/task/?id=${id}`, {
             headers: {
                 'Content-Type': 'application/json'
             },
-            method: 'POST',
-        }).then(res => 
-             res.json()
-        ).then(data => {
+            method: 'DELETE',
+        }).then(res => {
+            if (!res.ok) {
+                reject("Error");
+            }
+            return res.json()
+        }).then(data => {
             resolve(data);
         }).catch(() => {
             reject("Error");

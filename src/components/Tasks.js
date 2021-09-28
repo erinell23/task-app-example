@@ -11,7 +11,7 @@ export const Tasks = react.memo(({ task, handleCheckChange, handleDeleteTask }) 
                 />
                 <span>
                 {
-                    task.estado ? <strike>{task.descripcion}</strike> : task.descripcion
+                    task.estado ? <strike>{task.detalle}</strike> : task.detalle
 
                 }
                 </span>
